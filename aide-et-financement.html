@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aide & Financement — Transformez vos idées en réalité</title>
+<meta name="description" content="Aide & Financement accompagne les porteurs de petits projets avec un financement pouvant aller jusqu'à 2 700 €.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230b1220%22/><text x=%2250%22 y=%2265%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%2334e3a1%22>A%26F</text></svg>">
+<style>
+/* ============================= TOKENS ============================= */
+:root{
+  --bg-0:#070c14;
+  --bg-1:#0a1220;
+  --bg-2:#0d1a2b;
+  --panel:#0f1b2d;
+  --panel-2:#101f34;
+  --border:rgba(120,170,190,0.14);
+  --border-soft:rgba(120,170,190,0.08);
+  --green:#2fe6a0;
+  --green-2:#17c98a;
+  --blue:#3aa0ff;
+  --blue-2:#2563eb;
+  --grad-main: linear-gradient(120deg, var(--green) 0%, #22c8b0 35%, var(--blue) 100%);
+  --grad-soft: linear-gradient(180deg, rgba(47,230,160,0.14), rgba(58,160,255,0.06));
+  --text-0:#eaf2f4;
+  --text-1:#b9c8cf;
+  --text-2:#7f93a0;
+  --danger:#ff6b6b;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow-glow: 0 0 0 1px var(--border), 0 20px 60px -20px rgba(47,230,160,0.15);
+  --ease: cubic-bezier(.16,.84,.44,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg-0);
+  color:var(--text-0);
+  font-family:'Inter', -apple-system, sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{
+  font-family:'Sora', sans-serif;
+  margin:0 0 .5em 0;
+  letter-spacing:-0.02em;
+}
+p{margin:0 0 1em 0;color:var(--text-1);}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'JetBrains Mono', monospace;}
+img{max-width:100%;display:block;}
+section{position:relative;z-index:1;}
+.container{max-width:1180px;margin:0 auto;padding:0 24px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green);
+  padding:6px 14px;border:1px solid var(--border);border-radius:999px;
+  background:rgba(47,230,160,0.05);
+  margin-bottom:18px;
+}
+.eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grad-main);box-shadow:0 0 10px var(--green);}
+
+/* ============================= BACKGROUND FX ============================= */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;}
+.orb-1{width:520px;height:520px;background:var(--green);top:-160px;left:-120px;animation:float1 22s ease-in-out infinite;}
+.orb-2{width:460px;height:460px;background:var(--blue);top:20%;right:-160px;animation:float2 26s ease-in-out infinite;}
+.orb-3{width:380px;height:380px;background:#1fb6a0;bottom:-140px;left:30%;animation:float3 30s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,80px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,60px)}}
+@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-60px)}}
+.grid-overlay{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--border-soft) 1px, transparent 1px), linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  opacity:.5;
+}
+
+/* ============================= NAV ============================= */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(16px) saturate(140%);
+  background:rgba(7,12,20,0.72);
+  border-bottom:1px solid var(--border-soft);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Sora';font-weight:700;font-size:1.05rem;}
+.brand .logo-mark{width:38px;height:38px;flex:none;}
+.brand small{display:block;font-family:'Inter';font-weight:400;font-size:.68rem;color:var(--text-2);letter-spacing:.02em;}
+.nav-links{display:flex;gap:30px;align-items:center;}
+.nav-links a{font-size:.92rem;color:var(--text-1);transition:color .25s var(--ease);position:relative;}
+.nav-links a:hover{color:var(--text-0);}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--grad-main);transition:width .3s var(--ease);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{display:flex;gap:12px;align-items:center;}
+.burger{display:none;background:none;border:1px solid var(--border);border-radius:10px;width:42px;height:42px;color:var(--text-0);cursor:pointer;font-size:1.1rem;}
+
+/* ============================= BUTTONS ============================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 26px;border-radius:12px;font-weight:600;font-size:.92rem;
+  cursor:pointer;border:none;transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+  font-family:'Inter';white-space:nowrap;
+}
+.btn-primary{
+  background:var(--grad-main);color:#03140f;
+  box-shadow:0 10px 30px -8px rgba(47,230,160,0.45);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(47,230,160,0.55);}
+.btn-ghost{
+  background:transparent;color:var(--text-0);border:1px solid var(--border);
+}
+.btn-ghost:hover{border-color:rgba(120,170,190,0.4);background:rgba(255,255,255,0.03);transform:translateY(-2px);}
+.btn-sm{padding:9px 16px;font-size:.82rem;border-radius:10px;}
+.btn-block{width:100%;}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none !important;}
+
+/* ============================= HERO ============================= */
+.hero{padding:110px 24px 90px;text-align:center;position:relative;}
+.hero .container{position:relative;}
+.hero h1{
+  font-size:clamp(2.2rem, 5vw, 3.7rem);
+  font-weight:700;max-width:900px;margin:0 auto 22px;
+  background:linear-gradient(100deg,#f2fbf7 10%, var(--green) 45%, var(--blue) 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1.12;
+}
+.hero-sub{max-width:660px;margin:0 auto 38px;font-size:1.08rem;color:var(--text-1);}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  max-width:720px;margin:0 auto;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  background:var(--border-soft);
+}
+.stat{background:var(--panel);padding:26px 14px;text-align:center;}
+.stat b{display:block;font-family:'Sora';font-size:1.7rem;background:var(--grad-main);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat span{font-size:.8rem;color:var(--text-2);}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ============================= SECTION HEAD ============================= */
+.section-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+.section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);}
+.section-head p{font-size:1rem;}
+
+/* ============================= STEPS ============================= */
+.steps{padding:100px 0;}
+.steps-list{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.step-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 20px;position:relative;overflow:hidden;transition:transform .4s var(--ease), border-color .4s;
+}
+.step-card:hover{transform:translateY(-6px);border-color:rgba(47,230,160,0.4);}
+.step-num{
+  font-family:'JetBrains Mono';font-size:.78rem;color:var(--bg-0);
+  width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  background:var(--grad-main);font-weight:700;margin-bottom:16px;
+}
+.step-card h4{font-size:1rem;margin-bottom:6px;}
+.step-card p{font-size:.86rem;margin:0;}
+.step-connector{position:absolute;top:32px;right:-18px;color:var(--text-2);font-size:1.2rem;z-index:2;}
+
+/* ============================= CATEGORIES ============================= */
+.categories{padding:100px 0;}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.cat-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:22px 16px;text-align:center;cursor:pointer;transition:all .35s var(--ease);
+}
+.cat-card:hover{background:var(--panel-2);border-color:rgba(58,160,255,0.45);transform:translateY(-4px) scale(1.02);}
+.cat-card .ic{font-size:1.6rem;margin-bottom:10px;}
+.cat-card span{font-size:.85rem;font-weight:500;color:var(--text-0);}
+
+/* ============================= FORM ============================= */
+.form-section{padding:100px 0;}
+.form-card{
+  background:linear-gradient(180deg, var(--panel), var(--bg-1));
+  border:1px solid var(--border);border-radius:24px;
+  padding:44px;box-shadow:var(--shadow-glow);
+  max-width:920px;margin:0 auto;
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:.84rem;color:var(--text-1);font-weight:500;}
+.field .req{color:var(--green);}
+.field input, .field select, .field textarea{
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;
+  padding:13px 14px;color:var(--text-0);font-family:'Inter';font-size:.92rem;
+  transition:border-color .25s, box-shadow .25s;width:100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(47,230,160,0.14);
+}
+.field textarea{resize:vertical;min-height:100px;font-family:'Inter';}
+.field small.hint{color:var(--text-2);font-size:.76rem;}
+.file-drop{
+  border:1.5px dashed var(--border);border-radius:12px;padding:22px;text-align:center;
+  color:var(--text-2);font-size:.85rem;cursor:pointer;transition:border-color .3s, background .3s;
+}
+.file-drop:hover{border-color:var(--green);background:rgba(47,230,160,0.04);}
+.file-drop.dragover{border-color:var(--blue);background:rgba(58,160,255,0.06);}
+.range-wrap{display:flex;align-items:center;gap:14px;}
+.range-wrap input[type=range]{flex:1;accent-color:#2fe6a0;}
+.range-value{
+  font-family:'JetBrains Mono';font-weight:600;min-width:88px;text-align:right;
+  background:var(--grad-main);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.1rem;
+}
+.form-note{display:flex;gap:10px;align-items:flex-start;font-size:.8rem;color:var(--text-2);margin:22px 0;}
+.form-note input{margin-top:3px;}
+.form-error{color:var(--danger);font-size:.78rem;min-height:16px;}
+.success-box{
+  display:none;text-align:center;padding:50px 20px;
+}
+.success-box.show{display:block;}
+.success-icon{
+  width:74px;height:74px;border-radius:50%;background:var(--grad-main);margin:0 auto 22px;
+  display:flex;align-items:center;justify-content:center;font-size:2rem;color:#04140f;
+  box-shadow:0 0 40px rgba(47,230,160,0.4);
+}
+.file-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.file-chip{
+  font-size:.76rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  padding:5px 10px;border-radius:999px;color:var(--text-1);
+}
+
+/* ============================= ABOUT / TRUST ============================= */
+.trust{padding:0 0 100px;}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.trust-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);padding:24px;}
+.trust-card .ic{font-size:1.4rem;margin-bottom:10px;color:var(--green);}
+.trust-card h4{font-size:.95rem;}
+.trust-card p{font-size:.82rem;margin:0;}
+
+/* ============================= CONTACT ============================= */
+.contact{padding:0 0 110px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:980px;margin:0 auto;}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;}
+.contact-info-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start;}
+.contact-info-item .ic{
+  width:40px;height:40px;border-radius:10px;background:var(--grad-soft);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex:none;color:var(--green);
+}
+.contact-info-item b{display:block;font-size:.9rem;color:var(--text-0);}
+.contact-info-item span{font-size:.82rem;color:var(--text-2);}
+
+/* ============================= FOOTER ============================= */
+footer{border-top:1px solid var(--border-soft);padding:60px 0 26px;position:relative;z-index:1;}
+.footer-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:30px;margin-bottom:44px;}
+.footer-col h5{font-size:.86rem;color:var(--text-0);margin-bottom:14px;}
+.footer-col a{display:block;font-size:.85rem;color:var(--text-2);margin-bottom:10px;transition:color .25s;}
+.footer-col a:hover{color:var(--green);}
+.footer-brand p{font-size:.85rem;max-width:280px;}
+.social-row{display:flex;gap:10px;margin-top:14px;}
+.social-row a{
+  width:36px;height:36px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;
+}
+.social-row a:hover{border-color:var(--green);color:var(--green);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  padding-top:24px;border-top:1px solid var(--border-soft);font-size:.78rem;color:var(--text-2);
+}
+.admin-link{font-size:.78rem;color:var(--text-2);border:1px solid var(--border);padding:6px 12px;border-radius:8px;transition:all .25s;}
+.admin-link:hover{color:var(--green);border-color:var(--green);}
+
+/* ============================= CHAT WIDGET ============================= */
+.chat-fab{
+  position:fixed;bottom:26px;right:26px;z-index:80;
+  width:60px;height:60px;border-radius:50%;background:var(--grad-main);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 10px 34px -6px rgba(47,230,160,0.55);border:none;
+  font-size:1.5rem;color:#04140f;transition:transform .3s var(--ease);
+}
+.chat-fab:hover{transform:scale(1.08);}
+.chat-fab .dot{position:absolute;top:6px;right:6px;width:11px;height:11px;background:var(--blue);border-radius:50%;border:2px solid var(--bg-0);}
+.chat-panel{
+  position:fixed;bottom:100px;right:26px;width:360px;max-width:calc(100vw - 32px);height:480px;max-height:70vh;
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;z-index:80;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,0.6);
+  transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:all .3s var(--ease);
+}
+.chat-panel.open{transform:none;opacity:1;pointer-events:all;}
+.chat-head{
+  padding:16px 18px;background:var(--grad-main);color:#04140f;display:flex;justify-content:space-between;align-items:center;
+}
+.chat-head b{font-size:.92rem;}
+.chat-head span{font-size:.72rem;opacity:.8;display:block;}
+.chat-head button{background:rgba(0,0,0,0.15);border:none;color:#04140f;width:28px;height:28px;border-radius:8px;cursor:pointer;}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.msg{max-width:80%;padding:10px 13px;border-radius:14px;font-size:.86rem;line-height:1.4;}
+.msg.user{align-self:flex-end;background:var(--grad-main);color:#04140f;border-bottom-right-radius:4px;}
+.msg.admin{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.msg.system{align-self:center;font-size:.74rem;color:var(--text-2);background:none;}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border-soft);}
+.chat-input input{
+  flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text-0);font-size:.86rem;
+}
+.chat-input input:focus{outline:none;border-color:var(--green);}
+.chat-input button{
+  background:var(--grad-main);border:none;width:42px;border-radius:10px;color:#04140f;cursor:pointer;font-size:1rem;
+}
+.chat-name-gate{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;}
+.chat-name-gate input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text-0);}
+
+/* ============================= ADMIN ============================= */
+.admin-overlay{
+  position:fixed;inset:0;background:rgba(4,8,14,0.85);backdrop-filter:blur(6px);z-index:200;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.admin-overlay.open{display:flex;}
+.admin-login-box{
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:40px;width:100%;max-width:380px;
+  box-shadow:var(--shadow-glow);
+}
+.admin-login-box h3{text-align:center;}
+.admin-login-box p{text-align:center;font-size:.85rem;}
+.admin-dashboard{
+  position:fixed;inset:0;background:var(--bg-0);z-index:210;display:none;overflow-y:auto;
+}
+.admin-dashboard.open{display:block;}
+.admin-topbar{
+  display:flex;justify-content:space-between;align-items:center;padding:18px 28px;
+  border-bottom:1px solid var(--border-soft);position:sticky;top:0;background:rgba(7,12,20,0.9);backdrop-filter:blur(10px);z-index:5;
+}
+.admin-main{padding:28px;max-width:1200px;margin:0 auto;}
+.admin-tabs{display:flex;gap:10px;margin-bottom:22px;}
+.admin-tab{padding:9px 18px;border-radius:10px;border:1px solid var(--border);cursor:pointer;font-size:.85rem;color:var(--text-1);}
+.admin-tab.active{background:var(--grad-main);color:#04140f;border-color:transparent;font-weight:600;}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px;}
+.admin-stat{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.admin-stat b{font-family:'Sora';font-size:1.6rem;display:block;}
+.admin-stat span{font-size:.8rem;color:var(--text-2);}
+.project-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:14px;
+}
+.project-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.project-card-head h4{margin:0;font-size:1.05rem;}
+.badge{font-size:.72rem;padding:4px 10px;border-radius:999px;background:rgba(47,230,160,0.12);color:var(--green);border:1px solid rgba(47,230,160,0.3);}
+.project-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:.78rem;color:var(--text-2);margin:12px 0;padding:12px 0;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
+.project-meta b{color:var(--text-0);display:block;font-size:.85rem;}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-2);}
+.chat-session-item{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;transition:border-color .2s;
+}
+.chat-session-item:hover{border-color:var(--green);}
+.admin-chat-view{display:grid;grid-template-columns:280px 1fr;gap:20px;height:70vh;}
+.admin-chat-list{overflow-y:auto;padding-right:4px;}
+.admin-chat-thread{background:var(--panel);border:1px solid var(--border);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;}
+.thread-body{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;}
+.thread-input{display:flex;gap:10px;padding:14px;border-top:1px solid var(--border-soft);}
+.thread-input input{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:11px;color:var(--text-0);}
+.thread-input button{background:var(--grad-main);border:none;padding:0 18px;border-radius:10px;color:#04140f;font-weight:600;cursor:pointer;}
+
+/* ============================= TOAST ============================= */
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:var(--panel);border:1px solid var(--border);color:var(--text-0);
+  padding:14px 22px;border-radius:12px;font-size:.86rem;z-index:300;box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition:transform .4s var(--ease);
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ============================= RESPONSIVE ============================= */
+@media (max-width:980px){
+  .steps-list{grid-template-columns:repeat(3,1fr);}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .trust-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .step-connector{display:none;}
+}
+@media (max-width:760px){
+  .nav-links, .nav-cta .btn-ghost{display:none;}
+  .burger{display:flex;align-items:center;justify-content:center;}
+  .hero{padding:80px 20px 60px;}
+  .hero-stats{grid-template-columns:1fr;}
+  .steps-list{grid-template-columns:1fr 1fr;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .form-grid{grid-template-columns:1fr;}
+  .form-card{padding:26px 20px;}
+  .trust-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .admin-chat-view{grid-template-columns:1fr;height:auto;}
+  .project-meta{grid-template-columns:1fr 1fr;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+  .chat-panel{width:calc(100vw - 24px);right:12px;bottom:88px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="grid-overlay"></div>
+
+<!-- ============================= NAV ============================= -->
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2fe6a0"/><stop offset="1" stop-color="#3aa0ff"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="30" stroke="url(#lg1)" stroke-width="2" opacity="0.35"/>
+        <path d="M10 40C10 40 16 46 22 42C24 40.5 24 37 24 37" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M54 40C54 40 48 46 42 42C40 40.5 40 37 40 37" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M22 37C22 37 20 26 24 20C24 20 20 24 18 32C16 38 22 37 22 37Z" fill="url(#lg1)" opacity="0.9"/>
+        <path d="M32 40V22" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M32 22C32 22 24 21 24 14C24 14 32 13 32 22Z" fill="url(#lg1)"/>
+        <path d="M32 26C32 26 40 25 40 18C40 18 32 17 32 26Z" fill="url(#lg1)" opacity="0.75"/>
+      </svg>
+      <span>Aide & Financement<small>Financer les petites idées</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#comment">Comment ça marche</a>
+      <a href="#categories">Catégories</a>
+      <a href="#formulaire">Déposer un projet</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost btn-sm" onclick="openAdminGate();return false;">Espace admin</a>
+      <a href="#formulaire" class="btn btn-primary btn-sm">Déposer mon projet</a>
+      <button class="burger" onclick="toggleMobileNav()">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="eyebrow reveal">Programme de micro-financement</div>
+    <h1 class="reveal">Transformez vos idées en réalité grâce à notre programme de financement.</h1>
+    <p class="hero-sub reveal">Notre mission est d'accompagner les porteurs de projets en leur offrant un accès simple à un financement pouvant aller jusqu'à <strong>2 700 €</strong> afin de développer leurs initiatives, lancer une activité ou concrétiser une idée.</p>
+    <div class="hero-actions reveal">
+      <a href="#formulaire" class="btn btn-primary">Déposer mon projet</a>
+      <a href="#comment" class="btn btn-ghost">En savoir plus</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><b>2 700 €</b><span>Financement maximum par projet</span></div>
+      <div class="stat"><b>48h</b><span>Délai moyen de première réponse</span></div>
+      <div class="stat"><b>10</b><span>Catégories de projets éligibles</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= COMMENT ÇA MARCHE ============================= -->
+<section class="steps" id="comment">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Le parcours</div>
+      <h2>Comment ça fonctionne</h2>
+      <p>Cinq étapes claires entre votre idée et le financement de votre projet.</p>
+    </div>
+    <div class="steps-list">
+      <div class="step-card reveal"><div class="step-num">01</div><h4>Créer un compte</h4><p>Inscrivez-vous en quelques minutes pour accéder à votre espace personnel.</p><div class="step-connector">→</div></div>
+      <div class="step-card reveal"><div class="step-num">02</div><h4>Déposer son projet</h4><p>Remplissez le formulaire détaillé avec vos objectifs et le montant demandé.</p><div class="step-connector">→</div></div>
+      <div class="step-card reveal"><div class="step-num">03</div><h4>Analyse de la demande</h4><p>Notre équipe étudie la viabilité et la cohérence de votre dossier.</p><div class="step-connector">→</div></div>
+      <div class="step-card reveal"><div class="step-num">04</div><h4>Réponse au candidat</h4><p>Vous recevez une réponse motivée dans les meilleurs délais.</p><div class="step-connector">→</div></div>
+      <div class="step-card reveal"><div class="step-num">05</div><h4>Attribution du financement</h4><p>Si votre projet est retenu, les fonds vous sont attribués.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CATEGORIES ============================= -->
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Domaines éligibles</div>
+      <h2>Catégories de projets</h2>
+      <p>Quel que soit votre domaine, votre idée a sa place ici.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card reveal"><div class="ic">🏢</div><span>Création de petites entreprises</span></div>
+      <div class="cat-card reveal"><div class="ic">🧵</div><span>Artisanat</span></div>
+      <div class="cat-card reveal"><div class="ic">🛒</div><span>Commerce</span></div>
+      <div class="cat-card reveal"><div class="ic">🌾</div><span>Agriculture</span></div>
+      <div class="cat-card reveal"><div class="ic">💡</div><span>Innovation</span></div>
+      <div class="cat-card reveal"><div class="ic">🎓</div><span>Formation</span></div>
+      <div class="cat-card reveal"><div class="ic">📚</div><span>Éducation</span></div>
+      <div class="cat-card reveal"><div class="ic">🩺</div><span>Santé</span></div>
+      <div class="cat-card reveal"><div class="ic">🤝</div><span>Activités sociales</span></div>
+      <div class="cat-card reveal"><div class="ic">✨</div><span>Autres projets</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FORMULAIRE ============================= -->
+<section class="form-section" id="formulaire">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Dossier de candidature</div>
+      <h2>Déposer mon projet</h2>
+      <p>Plus votre description est précise, plus l'analyse de votre dossier sera rapide.</p>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="project-form" novalidate>
+        <h3 style="font-size:1.05rem;margin-bottom:18px;">Vos informations</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label>Nom et prénom <span class="req">*</span></label>
+            <input type="text" name="fullname" required autocomplete="name">
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Adresse e-mail <span class="req">*</span></label>
+            <input type="email" name="email" required autocomplete="email">
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Numéro de téléphone <span class="req">*</span></label>
+            <input type="tel" name="phone" required autocomplete="tel" placeholder="+33 6 12 34 56 78">
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Pays <span class="req">*</span></label>
+            <input type="text" name="country" required autocomplete="country-name">
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Ville <span class="req">*</span></label>
+            <input type="text" name="city" required autocomplete="address-level2">
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Âge <span class="req">*</span></label>
+            <input type="number" name="age" min="16" max="99" required>
+            <div class="form-error"></div>
+          </div>
+          <div class="field full">
+            <label>Profession <span class="req">*</span></label>
+            <input type="text" name="job" required>
+            <div class="form-error"></div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1.05rem;margin:28px 0 18px;">Votre projet</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label>Nom du projet <span class="req">*</span></label>
+            <input type="text" name="projectName" required>
+            <div class="form-error"></div>
+          </div>
+          <div class="field">
+            <label>Catégorie du projet <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="">Sélectionner une catégorie</option>
+              <option>Création de petites entreprises</option>
+              <option>Artisanat</option>
+              <option>Commerce</option>
+              <option>Agriculture</option>
+              <option>Innovation</option>
+              <option>Formation</option>
+              <option>Éducation</option>
+              <option>Santé</option>
+              <option>Activités sociales</option>
+              <option>Autres projets</option>
+            </select>
+            <div class="form-error"></div>
+          </div>
+          <div class="field full">
+            <label>Description détaillée du projet <span class="req">*</span></label>
+            <textarea name="description" required placeholder="Présentez votre projet : contexte, activité, avancement..."></textarea>
+            <div class="form-error"></div>
+          </div>
+          <div class="field full">
+            <label>Objectifs du projet <span class="req">*</span></label>
+            <textarea name="objectives" required placeholder="Quels résultats souhaitez-vous atteindre ?"></textarea>
+            <div class="form-error"></div>
+          </div>
+          <div class="field full">
+            <label>Montant demandé <span class="req">*</span></label>
+            <div class="range-wrap">
+              <input type="range" name="amountRange" min="50" max="2700" step="50" value="1000">
+              <span class="range-value mono" id="amount-display">1 000 €</span>
+            </div>
+            <small class="hint">Montant maximum : 2 700 €</small>
+          </div>
+          <div class="field full">
+            <label>Utilisation prévue des fonds <span class="req">*</span></label>
+            <textarea name="fundsUse" required placeholder="Détaillez comment les fonds seront utilisés (matériel, stock, formation...)"></textarea>
+            <div class="form-error"></div>
+          </div>
+          <div class="field full">
+            <label>Documents ou photos <small class="hint">(optionnel)</small></label>
+            <div class="file-drop" id="file-drop">
+              📎 Glissez vos fichiers ici ou cliquez pour parcourir
+              <input type="file" name="files" id="file-input" multiple style="display:none">
+            </div>
+            <div class="file-list" id="file-list"></div>
+          </div>
+        </div>
+
+        <label class="form-note">
+          <input type="checkbox" required>
+          J'accepte que mes données soient traitées dans le cadre de l'étude de ma demande de financement, conformément à la politique de confidentialité.
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Envoyer ma demande de financement</button>
+      </form>
+
+      <div class="success-box" id="success-box">
+        <div class="success-icon">✓</div>
+        <h3>Votre demande a bien été envoyée !</h3>
+        <p>Merci d'avoir déposé votre projet. Notre équipe va analyser votre dossier et vous recontactera par e-mail sous 48 heures.</p>
+        <p class="mono" style="font-size:.8rem;color:var(--text-2);">Référence du dossier : <span id="ref-number"></span></p>
+        <button class="btn btn-ghost" onclick="resetForm()">Déposer un autre projet</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= TRUST / SECURITE ============================= -->
+<section class="trust">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Confiance</div>
+      <h2>Une expérience sécurisée</h2>
+      <p>La sécurité de vos données est au cœur de notre plateforme.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal"><div class="ic">🔒</div><h4>Connexion sécurisée HTTPS</h4><p>Toutes les données échangées sont chiffrées de bout en bout.</p></div>
+      <div class="trust-card reveal"><div class="ic">🛡️</div><h4>Protection des données</h4><p>Vos informations personnelles ne sont jamais partagées à des tiers.</p></div>
+      <div class="trust-card reveal"><div class="ic">✅</div><h4>Validation des formulaires</h4><p>Chaque dossier est vérifié avant transmission à notre équipe.</p></div>
+      <div class="trust-card reveal"><div class="ic">🚫</div><h4>Protection anti-spam</h4><p>Des contrôles automatiques limitent les demandes abusives.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CONTACT ============================= -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Une question ?</div>
+      <h2>Contactez-nous</h2>
+      <p>Notre équipe vous répond rapidement, du lundi au vendredi.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <form id="contact-form">
+          <div class="field">
+            <label>Nom complet <span class="req">*</span></label>
+            <input type="text" name="cname" required>
+          </div>
+          <div class="field">
+            <label>Adresse e-mail <span class="req">*</span></label>
+            <input type="email" name="cemail" required>
+          </div>
+          <div class="field">
+            <label>Message <span class="req">*</span></label>
+            <textarea name="cmessage" required placeholder="Votre message..."></textarea>
+          </div>
+          <label class="form-note">
+            <input type="checkbox" name="callback">
+            Je souhaite être recontacté(e) par téléphone.
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
+        </form>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-info-item">
+          <div class="ic">✉️</div>
+          <div><b>E-mail</b><span>contact@aide-financement.org</span></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ic">💬</div>
+          <div><b>Discussion en direct</b><span>Disponible via le bouton flottant en bas de l'écran</span></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ic">⏱️</div>
+          <div><b>Délai de réponse</b><span>Sous 48 heures ouvrées</span></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ic">📍</div>
+          <div><b>Zone d'intervention</b><span>Accompagnement à distance, ouvert à l'international</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="brand" style="margin-bottom:14px;">
+          <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <use href="#"/>
+            <circle cx="32" cy="32" r="30" stroke="url(#lg1)" stroke-width="2" opacity="0.35"/>
+            <path d="M10 40C10 40 16 46 22 42C24 40.5 24 37 24 37" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M54 40C54 40 48 46 42 42C40 40.5 40 37 40 37" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M32 40V22" stroke="url(#lg1)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M32 22C32 22 24 21 24 14C24 14 32 13 32 22Z" fill="url(#lg1)"/>
+          </svg>
+          <span>Aide & Financement</span>
+        </div>
+        <p>Nous aidons les porteurs de petits projets à obtenir un financement simple, rapide et humain.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="X">✕</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <a href="#comment">Comment ça marche</a>
+        <a href="#categories">Catégories</a>
+        <a href="#formulaire">Déposer un projet</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Entreprise</h5>
+        <a href="#" onclick="openLegal('about');return false;">À propos</a>
+        <a href="#" onclick="openLegal('privacy');return false;">Politique de confidentialité</a>
+        <a href="#" onclick="openLegal('terms');return false;">Conditions d'utilisation</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="toggleChat(true);return false;">Discussion en direct</a>
+        <a href="#" onclick="openAdminGate();return false;">Espace admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Aide & Financement. Tous droits réservés.</span>
+      <a href="#" class="admin-link" onclick="openAdminGate();return false;">🔐 Connexion administrateur</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================= CHAT WIDGET ============================= -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()">💬<span class="dot"></span></button>
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-head">
+    <div><b>Assistance en direct</b><span>Généralement en ligne — réponse rapide</span></div>
+    <button onclick="toggleChat(false)">✕</button>
+  </div>
+  <div class="chat-name-gate" id="chat-name-gate">
+    <p style="text-align:center;">👋 Bonjour ! Dites-nous qui vous êtes pour démarrer la discussion.</p>
+    <input type="text" id="chat-name-input" placeholder="Votre nom">
+    <button class="btn btn-primary" onclick="startChat()">Démarrer la discussion</button>
+  </div>
+  <div class="chat-body" id="chat-body" style="display:none;"></div>
+  <div class="chat-input" id="chat-input-row" style="display:none;">
+    <input type="text" id="chat-input" placeholder="Écrivez votre message...">
+    <button onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
+<!-- ============================= LEGAL MODAL ============================= -->
+<div class="admin-overlay" id="legal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-login-box" style="max-width:560px;text-align:left;max-height:80vh;overflow-y:auto;">
+    <h3 id="legal-title" style="text-align:left;"></h3>
+    <div id="legal-body" style="font-size:.88rem;color:var(--text-1);"></div>
+    <button class="btn btn-ghost btn-block" style="margin-top:18px;" onclick="document.getElementById('legal-overlay').classList.remove('open')">Fermer</button>
+  </div>
+</div>
+
+<!-- ============================= ADMIN LOGIN ============================= -->
+<div class="admin-overlay" id="admin-gate">
+  <div class="admin-login-box">
+    <h3>🔐 Espace administrateur</h3>
+    <p>Connectez-vous pour consulter les demandes et les messages.</p>
+    <div class="field">
+      <label>Mot de passe</label>
+      <input type="password" id="admin-password" placeholder="••••••••">
+      <div class="form-error" id="admin-error"></div>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="tryAdminLogin()">Se connecter</button>
+    <button class="btn btn-ghost btn-block" style="margin-top:10px;" onclick="closeAdminGate()">Annuler</button>
+  </div>
+</div>
+
+<!-- ============================= ADMIN DASHBOARD ============================= -->
+<div class="admin-dashboard" id="admin-dashboard">
+  <div class="admin-topbar">
+    <div class="brand"><span>Aide & Financement <small>Espace administrateur</small></span></div>
+    <button class="btn btn-ghost btn-sm" onclick="logoutAdmin()">Se déconnecter</button>
+  </div>
+  <div class="admin-main">
+    <div class="admin-stats">
+      <div class="admin-stat"><b id="stat-total">0</b><span>Demandes reçues</span></div>
+      <div class="admin-stat"><b id="stat-amount">0 €</b><span>Montant total demandé</span></div>
+      <div class="admin-stat"><b id="stat-chats">0</b><span>Conversations actives</span></div>
+      <div class="admin-stat"><b id="stat-today">0</b><span>Reçues aujourd'hui</span></div>
+    </div>
+    <div class="admin-tabs">
+      <div class="admin-tab active" data-tab="projects" onclick="switchAdminTab('projects')">📁 Demandes de financement</div>
+      <div class="admin-tab" data-tab="chats" onclick="switchAdminTab('chats')">💬 Messages du chat</div>
+    </div>
+    <div class="admin-panel active" id="panel-projects">
+      <div id="projects-list"></div>
+    </div>
+    <div class="admin-panel" id="panel-chats">
+      <div class="admin-chat-view">
+        <div class="admin-chat-list" id="admin-chat-list"></div>
+        <div class="admin-chat-thread">
+          <div class="thread-body" id="thread-body"><div class="empty-state">Sélectionnez une conversation</div></div>
+          <div class="thread-input">
+            <input type="text" id="thread-input" placeholder="Répondre en tant qu'administrateur...">
+            <button onclick="sendAdminReply()">Envoyer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ============================= PARTICLES BACKGROUND ============================= */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w,h,particles=[];
+  function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+  window.addEventListener('resize', resize); resize();
+  const COUNT = Math.min(70, Math.floor(window.innerWidth/18));
+  for(let i=0;i<COUNT;i++){
+    particles.push({
+      x:Math.random()*w, y:Math.random()*h,
+      vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.25,
+      r:Math.random()*1.6+0.6,
+      c: Math.random()>0.5 ? '47,230,160' : '58,160,255'
+    });
+  }
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=w; if(p.x>w)p.x=0;
+      if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.c},0.55)`;
+      ctx.fill();
+    }
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j];
+        const dx=a.x-b.x, dy=a.y-b.y, dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<110){
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(120,190,180,${0.12*(1-dist/110)})`;
+          ctx.lineWidth=1;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  step();
+})();
+
+/* ============================= SCROLL REVEAL ============================= */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+
+/* ============================= MOBILE NAV ============================= */
+function toggleMobileNav(){
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.style.display === 'flex';
+  links.style.display = isOpen ? 'none' : 'flex';
+  links.style.cssText += isOpen ? '' : 'position:fixed;top:74px;left:16px;right:16px;background:#0f1b2d;border:1px solid var(--border);border-radius:14px;flex-direction:column;padding:20px;z-index:60;gap:16px;';
+}
+
+/* ============================= TOAST ============================= */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+/* ============================= LEGAL MODAL CONTENT ============================= */
+const legalContent = {
+  about: ["À propos d'Aide & Financement",
+    "Aide & Financement est une plateforme dédiée à l'accompagnement des porteurs de petits projets. Nous croyons que chaque idée mérite une chance d'exister, quel que soit son secteur : commerce, artisanat, agriculture, innovation ou action sociale. Notre équipe étudie chaque dossier avec attention afin d'attribuer un financement pouvant aller jusqu'à 2 700 € aux projets les plus prometteurs."],
+  privacy: ["Politique de confidentialité",
+    "Les informations que vous transmettez via nos formulaires (identité, coordonnées, description de projet, documents) sont utilisées exclusivement dans le cadre de l'analyse de votre demande de financement ou de votre message. Elles ne sont jamais vendues ni transmises à des tiers non autorisés. Vous disposez à tout moment d'un droit d'accès, de rectification et de suppression de vos données en nous contactant à l'adresse indiquée dans la rubrique Contact."],
+  terms: ["Conditions d'utilisation",
+    "L'utilisation du site Aide & Financement implique l'acceptation des présentes conditions. Le dépôt d'un dossier ne garantit pas l'obtention d'un financement : chaque demande est étudiée selon des critères d'éligibilité, de viabilité et de disponibilité des fonds. Toute information volontairement erronée ou frauduleuse pourra entraîner le rejet définitif du dossier."]
+};
+function openLegal(key){
+  document.getElementById('legal-title').textContent = legalContent[key][0];
+  document.getElementById('legal-body').innerHTML = '<p>'+legalContent[key][1]+'</p>';
+  document.getElementById('legal-overlay').classList.add('open');
+}
+
+/* ============================= AMOUNT SLIDER ============================= */
+const amountRange = document.querySelector('input[name=amountRange]');
+const amountDisplay = document.getElementById('amount-display');
+function fmtEuro(n){ return Number(n).toLocaleString('fr-FR')+' €'; }
+amountRange.addEventListener('input', ()=> amountDisplay.textContent = fmtEuro(amountRange.value));
+amountDisplay.textContent = fmtEuro(amountRange.value);
+
+/* ============================= FILE DROP ============================= */
+const fileDrop = document.getElementById('file-drop');
+const fileInput = document.getElementById('file-input');
+const fileList = document.getElementById('file-list');
+let attachedFiles = [];
+fileDrop.addEventListener('click', ()=>fileInput.click());
+['dragover','dragleave','drop'].forEach(evt=>{
+  fileDrop.addEventListener(evt, e=>{
+    e.preventDefault();
+    fileDrop.classList.toggle('dragover', evt==='dragover');
+    if(evt==='drop'){ handleFiles(e.dataTransfer.files); }
+  });
+});
+fileInput.addEventListener('change', ()=>handleFiles(fileInput.files));
+function handleFiles(files){
+  for(const f of files){ attachedFiles.push(f.name); }
+  renderFileList();
+}
+function renderFileList(){
+  fileList.innerHTML = attachedFiles.map(n=>`<span class="file-chip">📄 ${n}</span>`).join('');
+}
+
+/* ============================= FORM VALIDATION + STORAGE ============================= */
+function validateField(input){
+  const errBox = input.closest('.field').querySelector('.form-error');
+  if(!errBox) return true;
+  if(input.hasAttribute('required') && !String(input.value).trim()){
+    errBox.textContent = 'Ce champ est obligatoire.';
+    return false;
+  }
+  if(input.type==='email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)){
+    errBox.textContent = 'Adresse e-mail invalide.';
+    return false;
+  }
+  if(input.type==='tel' && input.value && !/^[0-9+()\s.-]{6,20}$/.test(input.value)){
+    errBox.textContent = 'Numéro de téléphone invalide.';
+    return false;
+  }
+  if(input.type==='number' && input.value && (Number(input.value)<16 || Number(input.value)>99)){
+    errBox.textContent = 'Âge invalide.';
+    return false;
+  }
+  errBox.textContent='';
+  return true;
+}
+
+const projectForm = document.getElementById('project-form');
+projectForm.querySelectorAll('input, select, textarea').forEach(inp=>{
+  inp.addEventListener('blur', ()=>validateField(inp));
+});
+
+async function loadShared(key, fallback){
+  try{
+    const res = await window.storage.get(key, true);
+    return res ? JSON.parse(res.value) : fallback;
+  }catch(e){ return fallback; }
+}
+async function saveShared(key, value){
+  try{ await window.storage.set(key, JSON.stringify(value), true); return true; }
+  catch(e){ console.error('Storage error', e); return false; }
+}
+
+projectForm.addEventListener('submit', async function(e){
+  e.preventDefault();
+  let valid = true;
+  this.querySelectorAll('input[required], select[required], textarea[required]').forEach(inp=>{
+    if(!validateField(inp)) valid = false;
+  });
+  if(!valid){ showToast('Merci de corriger les champs en rouge.'); return; }
+
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours...';
+
+  const fd = new FormData(this);
+  const ref = 'AF-' + Date.now().toString().slice(-8);
+  const project = {
+    id: ref,
+    fullname: fd.get('fullname'), email: fd.get('email'), phone: fd.get('phone'),
+    country: fd.get('country'), city: fd.get('city'), age: fd.get('age'), job: fd.get('job'),
+    projectName: fd.get('projectName'), category: fd.get('category'),
+    description: fd.get('description'), objectives: fd.get('objectives'),
+    amount: Number(fd.get('amountRange')), fundsUse: fd.get('fundsUse'),
+    files: attachedFiles.slice(),
+    status: 'En attente',
+    createdAt: new Date().toISOString()
+  };
+
+  const list = await loadShared('projects', []);
+  list.unshift(project);
+  await saveShared('projects', list);
+
+  submitBtn.disabled = false; submitBtn.textContent = 'Envoyer ma demande de financement';
+  document.getElementById('ref-number').textContent = ref;
+  projectForm.style.display = 'none';
+  document.getElementById('success-box').classList.add('show');
+});
+
+function resetForm(){
+  projectForm.reset();
+  projectForm.style.display = 'block';
+  document.getElementById('success-box').classList.remove('show');
+  attachedFiles = []; renderFileList();
+  amountDisplay.textContent = fmtEuro(1000);
+}
+
+/* ============================= CONTACT FORM ============================= */
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  showToast('✅ Message envoyé ! Nous vous répondrons rapidement.');
+  this.reset();
+});
+
+/* ============================= CHAT WIDGET ============================= */
+let chatSessionId = null;
+let chatUserName = null;
+let chatPollTimer = null;
+
+function toggleChat(force){
+  const panel = document.getElementById('chat-panel');
+  const shouldOpen = force !== undefined ? force : !panel.classList.contains('open');
+  panel.classList.toggle('open', shouldOpen);
+  if(shouldOpen && chatSessionId){ pollChat(); startChatPolling(); }
+  if(!shouldOpen){ stopChatPolling(); }
+}
+
+function genId(){ return 'sess-' + Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
+
+async function startChat(){
+  const nameInput = document.getElementById('chat-name-input');
+  const name = nameInput.value.trim();
+  if(!name){ nameInput.focus(); return; }
+  chatUserName = name;
+  chatSessionId = genId();
+  const chats = await loadShared('chats', {});
+  chats[chatSessionId] = {
+    name: chatUserName,
+    startedAt: new Date().toISOString(),
+    messages: [{ from:'system', text:'Conversation démarrée par '+chatUserName, time:Date.now() }]
+  };
+  await saveShared('chats', chats);
+
+  document.getElementById('chat-name-gate').style.display = 'none';
+  document.getElementById('chat-body').style.display = 'flex';
+  document.getElementById('chat-input-row').style.display = 'flex';
+  renderChatMessages(chats[chatSessionId].messages);
+  startChatPolling();
+  document.getElementById('chat-input').focus();
+}
+
+function renderChatMessages(messages){
+  const body = document.getElementById('chat-body');
+  body.innerHTML = messages.map(m=>{
+    if(m.from==='system') return `<div class="msg system">${m.text}</div>`;
+    const cls = m.from === 'admin' ? 'admin' : 'user';
+    return `<div class="msg ${cls}">${escapeHtml(m.text)}</div>`;
+  }).join('');
+  body.scrollTop = body.scrollHeight;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div'); d.textContent = str; return d.innerHTML;
+}
+
+async function sendChatMessage(){
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if(!text || !chatSessionId) return;
+  const chats = await loadShared('chats', {});
+  if(!chats[chatSessionId]) chats[chatSessionId] = { name:chatUserName, startedAt:new Date().toISOString(), messages:[] };
+  chats[chatSessionId].messages.push({ from:'user', text, time:Date.now() });
+  await saveShared('chats', chats);
+  input.value = '';
+  renderChatMessages(chats[chatSessionId].messages);
+}
+document.getElementById('chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') sendChatMessage(); });
+
+async function pollChat(){
+  if(!chatSessionId) return;
+  const chats = await loadShared('chats', {});
+  if(chats[chatSessionId]) renderChatMessages(chats[chatSessionId].messages);
+}
+function startChatPolling(){
+  stopChatPolling();
+  chatPollTimer = setInterval(pollChat, 4000);
+}
+function stopChatPolling(){ if(chatPollTimer) clearInterval(chatPollTimer); }
+
+/* ============================= ADMIN ============================= */
+const ADMIN_PASSWORD = 'admi1212';
+function openAdminGate(){ document.getElementById('admin-gate').classList.add('open'); }
+function closeAdminGate(){ document.getElementById('admin-gate').classList.remove('open'); document.getElementById('admin-password').value=''; document.getElementById('admin-error').textContent=''; }
+
+function tryAdminLogin(){
+  const pass = document.getElementById('admin-password').value;
+  if(pass === ADMIN_PASSWORD){
+    closeAdminGate();
+    openAdminDashboard();
+  }else{
+    document.getElementById('admin-error').textContent = 'Mot de passe incorrect.';
+  }
+}
+document.getElementById('admin-password').addEventListener('keydown', e=>{ if(e.key==='Enter') tryAdminLogin(); });
+
+let adminChatTimer = null;
+let activeAdminSession = null;
+
+async function openAdminDashboard(){
+  document.getElementById('admin-dashboard').classList.add('open');
+  await refreshAdminData();
+  adminChatTimer = setInterval(refreshAdminData, 5000);
+}
+function logoutAdmin(){
+  document.getElementById('admin-dashboard').classList.remove('open');
+  if(adminChatTimer) clearInterval(adminChatTimer);
+}
+
+function switchAdminTab(tab){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
+  document.getElementById('panel-projects').classList.toggle('active', tab==='projects');
+  document.getElementById('panel-chats').classList.toggle('active', tab==='chats');
+}
+
+async function refreshAdminData(){
+  const projects = await loadShared('projects', []);
+  const chats = await loadShared('chats', {});
+
+  document.getElementById('stat-total').textContent = projects.length;
+  document.getElementById('stat-amount').textContent = fmtEuro(projects.reduce((s,p)=>s+(Number(p.amount)||0),0));
+  document.getElementById('stat-chats').textContent = Object.keys(chats).length;
+  const todayStr = new Date().toDateString();
+  document.getElementById('stat-today').textContent = projects.filter(p=>new Date(p.createdAt).toDateString()===todayStr).length;
+
+  const listEl = document.getElementById('projects-list');
+  if(projects.length===0){
+    listEl.innerHTML = '<div class="empty-state">Aucune demande reçue pour le moment.</div>';
+  }else{
+    listEl.innerHTML = projects.map(p=>`
+      <div class="project-card">
+        <div class="project-card-head">
+          <h4>${escapeHtml(p.projectName||'—')}</h4>
+          <span class="badge">${escapeHtml(p.category||'—')}</span>
+        </div>
+        <p style="font-size:.85rem;">${escapeHtml(p.description||'')}</p>
+        <div class="project-meta">
+          <div><b>${escapeHtml(p.fullname||'')}</b>Nom complet</div>
+          <div><b>${escapeHtml(p.email||'')}</b>E-mail</div>
+          <div><b>${escapeHtml(p.phone||'')}</b>Téléphone</div>
+          <div><b>${fmtEuro(p.amount||0)}</b>Montant demandé</div>
+          <div><b>${escapeHtml(p.city||'')}, ${escapeHtml(p.country||'')}</b>Localisation</div>
+          <div><b>${escapeHtml(p.job||'')}</b>Profession</div>
+          <div><b>${escapeHtml(p.age||'')} ans</b>Âge</div>
+          <div><b>${new Date(p.createdAt).toLocaleString('fr-FR')}</b>Reçu le</div>
+        </div>
+        <p style="font-size:.82rem;"><strong>Objectifs :</strong> ${escapeHtml(p.objectives||'')}</p>
+        <p style="font-size:.82rem;"><strong>Utilisation des fonds :</strong> ${escapeHtml(p.fundsUse||'')}</p>
+        ${p.files && p.files.length ? `<div class="file-list">${p.files.map(f=>`<span class="file-chip">📄 ${escapeHtml(f)}</span>`).join('')}</div>` : ''}
+        <div style="margin-top:14px;display:flex;gap:8px;">
+          <select onchange="updateProjectStatus('${p.id}', this.value)" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text-0);border-radius:8px;padding:8px 10px;font-size:.8rem;">
+            <option ${p.status==='En attente'?'selected':''}>En attente</option>
+            <option ${p.status==='Approuvé'?'selected':''}>Approuvé</option>
+            <option ${p.status==='Refusé'?'selected':''}>Refusé</option>
+            <option ${p.status==='En analyse'?'selected':''}>En analyse</option>
+          </select>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const chatListEl = document.getElementById('admin-chat-list');
+  const sessionIds = Object.keys(chats);
+  if(sessionIds.length===0){
+    chatListEl.innerHTML = '<div class="empty-state">Aucune conversation pour le moment.</div>';
+  }else{
+    chatListEl.innerHTML = sessionIds.map(id=>{
+      const c = chats[id];
+      const last = c.messages[c.messages.length-1];
+      return `<div class="chat-session-item" onclick="openAdminThread('${id}')">
+        <div><b>${escapeHtml(c.name||'Visiteur')}</b><div style="font-size:.76rem;color:var(--text-2);">${escapeHtml((last&&last.text||'').slice(0,30))}</div></div>
+        <span style="font-size:.7rem;color:var(--text-2);">${c.messages.length}</span>
+      </div>`;
+    }).join('');
+  }
+  if(activeAdminSession && chats[activeAdminSession]) renderAdminThread(chats[activeAdminSession].messages);
+}
+
+async function updateProjectStatus(id, status){
+  const projects = await loadShared('projects', []);
+  const p = projects.find(p=>p.id===id);
+  if(p){ p.status = status; await saveShared('projects', projects); showToast('Statut mis à jour.'); }
+}
+
+async function openAdminThread(id){
+  activeAdminSession = id;
+  const chats = await loadShared('chats', {});
+  if(chats[id]) renderAdminThread(chats[id].messages);
+}
+function renderAdminThread(messages){
+  const body = document.getElementById('thread-body');
+  body.innerHTML = messages.map(m=>{
+    if(m.from==='system') return `<div class="msg system">${m.text}</div>`;
+    const cls = m.from==='admin' ? 'admin' : 'user';
+    return `<div class="msg ${cls}">${escapeHtml(m.text)}</div>`;
+  }).join('');
+  body.scrollTop = body.scrollHeight;
+}
+async function sendAdminReply(){
+  const input = document.getElementById('thread-input');
+  const text = input.value.trim();
+  if(!text || !activeAdminSession) return;
+  const chats = await loadShared('chats', {});
+  if(!chats[activeAdminSession]) return;
+  chats[activeAdminSession].messages.push({ from:'admin', text, time:Date.now() });
+  await saveShared('chats', chats);
+  input.value='';
+  renderAdminThread(chats[activeAdminSession].messages);
+}
+document.getElementById('thread-input').addEventListener('keydown', e=>{ if(e.key==='Enter') sendAdminReply(); });
+</script>
+</body>
+</html>
